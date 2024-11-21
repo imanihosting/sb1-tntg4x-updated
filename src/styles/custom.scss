@@ -1,0 +1,107 @@
+// Import Bootstrap functions and variables first
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+
+// Custom colors
+$primary: #1E3A8A;
+$secondary: #475569;
+$success: #38A169;
+$info: #4299E1;
+$warning: #ECC94B;
+$danger: #E53E3E;
+$light: #F7FAFC;
+$dark: #1A202C;
+
+// Custom color map
+$custom-colors: (
+  "ocean-blue": #3182CE,
+  "sky-blue": #63B3ED,
+  "sage": #48BB78,
+  "sand": #EDF2F7,
+  "cream": #F7FAFC,
+  "slate": #475569
+);
+
+// Merge theme colors
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+// Customize some Bootstrap variables
+$body-bg: $light;
+$body-color: $dark;
+$border-radius: 0.5rem;
+$border-radius-lg: 0.75rem;
+$border-radius-pill: 50rem;
+$box-shadow: 0 1px 3px 0 rgba($dark, 0.1), 0 1px 2px 0 rgba($dark, 0.06);
+$navbar-light-color: $secondary;
+$navbar-light-hover-color: $primary;
+$navbar-light-active-color: $primary;
+$navbar-toggler-focus-width: 0;
+$navbar-padding-y: 0;
+
+// Import all of Bootstrap
+@import "bootstrap/scss/bootstrap";
+
+// Custom styles
+.bg-gradient-primary {
+  background: linear-gradient(135deg, $primary 0%, darken($primary, 10%) 100%);
+}
+
+.nav-link {
+  transition: color 0.2s ease;
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: $primary;
+    transition: width 0.2s ease;
+  }
+  
+  &:hover::after,
+  &.active::after {
+    width: 24px;
+  }
+}
+
+.navbar-toggler {
+  border: none;
+  padding: 0.5rem;
+  
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+@include media-breakpoint-down(lg) {
+  .navbar-collapse {
+    background: $white;
+    padding: 1rem 0;
+    
+    .nav-link {
+      padding: 0.75rem 1rem;
+    }
+  }
+}
+
+.form-control, .form-select, .input-group-text {
+  height: 42px;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: $primary;
+  box-shadow: 0 0 0 0.2rem rgba($primary, 0.25);
+}
+
+.btn-warning {
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgba($dark, 0.1), 0 2px 4px -1px rgba($dark, 0.06);
+  }
+  transition: all 0.2s ease;
+}
